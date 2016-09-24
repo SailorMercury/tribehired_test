@@ -1,0 +1,21 @@
+<h1><b>Robot current location : </b>  <%=@robot.vertical%>, <%=@robot.horizontal%>, <%=@robot.facing%></h1>
+<% if flash[:notice] %>
+  <h2><%= flash[:notice] %></h2>
+<% end %>
+<% if flash[:alert] %>
+  <h2><%= flash[:alert] %></h2>
+<% end %>
+
+<h3>Move Robot</h3>
+<%= form_tag('/move_robot', method: :post) do %>
+  <%= select_tag "movement", options_for_select([ "MOVE", "LEFT", "RIGHT" ], "MOVE") %>
+  <%= submit_tag 'Go Go' %>
+<% end %>
+
+<h3>Place Robot</h3>
+<%= form_tag('/place_robot', method: :post) do %>
+  <%= text_field_tag "vertical", 0, placeholder: "0-4" %>
+  <%= text_field_tag "horizontal", 0, placeholder: "0-4" %>
+  <%= select_tag "facing", options_for_select([ "NORTH", "EAST", "SOUTH", "WEST" ], "NORTH") %>
+  <%= submit_tag 'Go Go' %>
+<% end %>

@@ -1,0 +1,37 @@
+
+<table>
+  <tr>
+    <th>Players</th>
+    <th>Roll</th>
+  </tr>
+  <% for i in 1..Dice::PLAYERS %>
+    <tr>
+      <td>Player <%= i %></td>
+      <td><%= @hash[i] %></td>
+    </tr>
+  <% end %>  
+
+</table>
+
+<%@after = Dice.after_move_remove(@hash)%>
+
+<h2>after move and remove</h2>
+<table>
+  <tr>
+    <th>Players</th>
+    <th>result</th>
+  </tr>
+  <% for i in 1..Dice::PLAYERS %>
+    <tr>
+      <td>Player <%= i %></td>
+      <td><%= @after[i].blank? ? "WINNER" : @after[i] %></td>
+    </tr>
+  <% end %>  
+
+</table>
+
+
+
+
+<%= link_to "Next round", dice_path(p1: @after[1],p2: @after[2],p3: @after[3],p4: @after[4])%></br>
+<%= link_to "Reset", dice_path%>
